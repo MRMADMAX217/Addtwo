@@ -1,0 +1,7 @@
+pycache/
+dist/
+build/
+*.egg-info
+.env
+.venv
+.addenv
