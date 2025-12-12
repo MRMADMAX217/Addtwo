@@ -8,6 +8,16 @@ PREREQUISITES
 Ensure you have the 'build' and 'twine' tools installed:
     pip install --upgrade build twine
 
+STEP 0: UPDATE VERSION
+----------------------
+Before building a new release, you must increment the version number.
+
+1. Open 'pyproject.toml'.
+2. Find the line starting with 'version ='.
+3. Increment the version (e.g., from "0.1.3" to "0.1.4").
+4. Save the file.
+
+
 STEP 1: CLEAN PREVIOUS BUILDS
 -----------------------------
 Remove any existing 'dist/' directory to ensure a clean build:
@@ -47,3 +57,22 @@ You will need your PyPI username and password (or an API token).
 DONE
 ----
 Your package should now be live on PyPI and installable via 'pip install addtwo-Monu'.
+
+QUICK REFERENCE COMMANDS
+------------------------
+# 1. Update version manually in pyproject.toml first!
+
+# 2. Clean
+if (Test-Path dist) { Remove-Item -Recurse -Force dist }
+
+# 3. Build
+python -m build
+
+# 4. Check
+twine check dist/*
+
+# 5. Upload to TestPyPI
+twine upload --repository testpypi dist/*
+
+# 6. Upload to PyPI
+twine upload dist/*
