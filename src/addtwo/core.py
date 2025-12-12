@@ -10,6 +10,7 @@ def add(a: Number, b: Number) -> Number:
     """
     if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
         raise TypeError("add() accepts only int or float")
+    print("Monu is adding the numbers")
     return a + b
 
 def main():

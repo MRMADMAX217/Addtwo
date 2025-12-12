@@ -1,0 +1,49 @@
+BUILD GUIDE FOR ADDTWO PACKAGE
+==============================
+
+This guide outlines the steps to build and publish the 'AddTwo' Python package to PyPI.
+
+PREREQUISITES
+-------------
+Ensure you have the 'build' and 'twine' tools installed:
+    pip install --upgrade build twine
+
+STEP 1: CLEAN PREVIOUS BUILDS
+-----------------------------
+Remove any existing 'dist/' directory to ensure a clean build:
+    # On Windows (PowerShell)
+    if (Test-Path dist) { Remove-Item -Recurse -Force dist }
+    
+    # On Unix/macOS
+    # rm -rf dist/
+
+STEP 2: BUILD THE PACKAGE
+-------------------------
+Run the build command from the root directory of the project (where pyproject.toml is located):
+    python -m build
+
+This will generate distribution files (typically a .tar.gz source archive and a .whl wheel file) in the 'dist/' directory.
+
+STEP 3: CHECK THE PACKAGE
+-------------------------
+Verify that the package description and metadata will render correctly on PyPI:
+    twine check dist/*
+
+STEP 4: UPLOAD TO TESTPYPI (OPTIONAL BUT RECOMMENDED)
+------------------------------------------------------
+TestPyPI is a separate instance of PyPI for testing.
+    twine upload --repository testpypi dist/*
+
+To install from TestPyPI to verify:
+    pip install --index-url https://test.pypi.org/simple/ --no-deps addtwo-Monu
+
+STEP 5: UPLOAD TO PYPI
+----------------------
+Once you are confident, upload the package to the real Python Package Index:
+    twine upload dist/*
+
+You will need your PyPI username and password (or an API token).
+
+DONE
+----
+Your package should now be live on PyPI and installable via 'pip install addtwo-Monu'.
